@@ -1,15 +1,16 @@
 package main
 
 import (
-	"google.golang.org/grpc"
-	address "grpc-test/proto"
 	"log"
+
+	"google.golang.org/grpc"
+	address "grpc-test/v1"
 )
 
 // Address 连接地址
-const Address string = ":8000"
+const Address string = ":20325"
 
-var streamClient address.StreamClient
+var streamClient address.StrategySyncerClient
 
 func main() {
 	// 连接服务器
@@ -20,6 +21,6 @@ func main() {
 	defer conn.Close()
 
 	// 建立gRPC连接
-	streamClient = address.NewStreamClient(conn)
+	streamClient = address.NewStrategySyncerClient(conn)
 	conversations()
 }
